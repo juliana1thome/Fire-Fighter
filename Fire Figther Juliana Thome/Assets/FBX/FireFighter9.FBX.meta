@@ -1,0 +1,231 @@
+fileFormatVersion: 2
+guid: fab6111850d13468096d3a38e8e0de65
+timeCreated: 1430352845
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Box001
+    100002: Box002
+    100004: Capsule001
+    100006: Capsule002
+    100008: Capsule003
+    100010: Capsule005
+    100012: Capsule006
+    100014: Capsule008
+    100016: Capsule009
+    100018: Capsule010
+    100020: casque
+    100022: //RootNode
+    100024: lleg
+    100026: pelvis
+    100028: poitrine
+    100030: rleg
+    100032: Sphere002
+    100034: Sphere003
+    100036: tete
+    100038: tuyau
+    100040: Tuyau_hand
+    400000: Box001
+    400002: Box002
+    400004: Capsule001
+    400006: Capsule002
+    400008: Capsule003
+    400010: Capsule005
+    400012: Capsule006
+    400014: Capsule008
+    400016: Capsule009
+    400018: Capsule010
+    400020: casque
+    400022: //RootNode
+    400024: lleg
+    400026: pelvis
+    400028: poitrine
+    400030: rleg
+    400032: Sphere002
+    400034: Sphere003
+    400036: tete
+    400038: tuyau
+    400040: Tuyau_hand
+    2300000: Box001
+    2300002: Box002
+    2300004: Capsule001
+    2300006: Capsule002
+    2300008: Capsule003
+    2300010: Capsule005
+    2300012: Capsule006
+    2300014: Capsule008
+    2300016: Capsule009
+    2300018: Capsule010
+    2300020: casque
+    2300022: lleg
+    2300024: poitrine
+    2300026: rleg
+    2300028: Sphere002
+    2300030: Sphere003
+    2300032: tete
+    2300034: tuyau
+    3300000: Box001
+    3300002: Box002
+    3300004: Capsule001
+    3300006: Capsule002
+    3300008: Capsule003
+    3300010: Capsule005
+    3300012: Capsule006
+    3300014: Capsule008
+    3300016: Capsule009
+    3300018: Capsule010
+    3300020: casque
+    3300022: lleg
+    3300024: poitrine
+    3300026: rleg
+    3300028: Sphere002
+    3300030: Sphere003
+    3300032: tete
+    3300034: tuyau
+    4300000: lleg
+    4300002: Capsule006
+    4300004: Box002
+    4300006: rleg
+    4300008: Capsule005
+    4300010: Box001
+    4300012: poitrine
+    4300014: Capsule002
+    4300016: Capsule001
+    4300018: Capsule003
+    4300020: Sphere002
+    4300022: Capsule009
+    4300024: Capsule008
+    4300026: Capsule010
+    4300028: Sphere003
+    4300030: tuyau
+    4300032: tete
+    4300034: casque
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 120
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: pelvis
+        weight: 1
+      - path: pelvis/lleg
+        weight: 1
+      - path: pelvis/lleg/Capsule006
+        weight: 1
+      - path: pelvis/lleg/Capsule006/Box002
+        weight: 1
+      - path: pelvis/poitrine
+        weight: 1
+      - path: pelvis/poitrine/Capsule002
+        weight: 1
+      - path: pelvis/poitrine/Capsule002/Capsule001
+        weight: 1
+      - path: pelvis/poitrine/Capsule002/Capsule001/Capsule003
+        weight: 1
+      - path: pelvis/poitrine/Capsule002/Capsule001/Capsule003/Sphere002
+        weight: 1
+      - path: pelvis/poitrine/Capsule009
+        weight: 1
+      - path: pelvis/poitrine/Capsule009/Capsule008
+        weight: 1
+      - path: pelvis/poitrine/Capsule009/Capsule008/Capsule010
+        weight: 1
+      - path: pelvis/poitrine/Capsule009/Capsule008/Capsule010/Sphere003
+        weight: 1
+      - path: pelvis/poitrine/Capsule009/Capsule008/Capsule010/Sphere003/Tuyau_hand
+        weight: 1
+      - path: pelvis/poitrine/Capsule009/Capsule008/Capsule010/Sphere003/Tuyau_hand/tuyau
+        weight: 1
+      - path: pelvis/poitrine/tete
+        weight: 1
+      - path: pelvis/poitrine/tete/casque
+        weight: 1
+      - path: pelvis/rleg
+        weight: 1
+      - path: pelvis/rleg/Capsule005
+        weight: 1
+      - path: pelvis/rleg/Capsule005/Box001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
