@@ -25,7 +25,7 @@ Description: As a player I want fire to start randomly after a while, so I will 
 Description: As a player I want a timer to count how much time pass before we finish the level, so we can create a score. (Require story 1)
 
 • We need to measure the time from the beginning of the level and stop the clock when we finish
-- [] 
+- [X] 
 
 • We need to define an average time for each level (manually set, based on previous attempt)
 - [] 
