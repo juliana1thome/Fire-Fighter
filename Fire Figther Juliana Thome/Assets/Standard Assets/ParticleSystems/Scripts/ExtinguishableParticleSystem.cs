@@ -9,28 +9,30 @@ namespace UnityStandardAssets.Effects
         [SerializeField] private float multiplier = 1f;
         [SerializeField] private float reduceFactor = 0.8f;
         [SerializeField] private GameObject checkbox = null;
-        [SerializeField] private Light light = null;
+        [SerializeField] private new Light light = null;
         private ParticleSystem[] m_Systems;
         private AudioSource audioS;
         bool stop = false;
 
-        //adding my gamemanager
-        private GameManager gamemanager;
+        //adding my gameManager
+        private GameManager gameManager;
 
         private void Start()
         {
             checkbox.SetActive(false);
             m_Systems = GetComponentsInChildren<ParticleSystem>();
             audioS = GetComponent<AudioSource>();
-
+            
+            //recovering game manager instance
+            gameManager = GameManager.instance;
             //creating fires
-            gamemanager.MoreFire();
+            gameManager.MoreFire();
         }
 
 
         public void Extinguish()
         {
-            if (stop) return;
+            //if (stop) return;
             multiplier *= reduceFactor;
             audioS.volume *= reduceFactor;
             light.intensity *= reduceFactor;
@@ -43,9 +45,13 @@ namespace UnityStandardAssets.Effects
                     checkbox.SetActive (true);
                     light.enabled = false;
                     audioS.enabled = false;
-                    stop = true;
-
-                    gamemanager.KillFire();
+                    if (stop == false)
+                    {
+                        stop = true;
+                        Debug.Log("Killing" );
+                        gameManager.KillFire();
+                    }
+                    
                 }
                 else
                 {

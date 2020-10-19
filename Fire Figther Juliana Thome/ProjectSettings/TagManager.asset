@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Not_used_fire
   - Light_Up_Fire
+  - Checkbox
+  - Fire
+  - Final_Scores
   layers:
   - Default
   - TransparentFX

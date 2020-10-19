@@ -1,6 +1,11 @@
 ﻿using System.Collections;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class Levels : MonoBehaviour
 {
@@ -8,13 +13,13 @@ public class Levels : MonoBehaviour
     /// Idea for this script: i need to use the tags to identify my fires
     /// </summary> 
 
-    //calling gamemanager
-    private GameManager gamemanager;
+    //calling gameManager
+    private GameManager gameManager;
 
-    private List<GameObject> notUsedFire = new List<GameObject>();//idea: i'm creating a box that i can pick a random fire to light up
-    private float light_up_time = 0; //timer to light up a random fire
-    private int index;
-    [SerializeField] private GameObject[] firesAvalible;
+    private List<GameObject> notUsedFire = new List<GameObject>();//idea: i'm creating a "box" that i can pick a random fire to light up
+    public float lightUpTime = 0; //timer to light up a random fire
+    private int i;//it works like an index so i can see where i'm at my search for not light up fires
+    [SerializeField] private GameObject[] firesAvailable;
     [SerializeField] private int timing = 20; //time asked
 
 
@@ -22,36 +27,32 @@ public class Levels : MonoBehaviour
     void Start()
     {
         //GameObject[] availableFires = GameObject.FindGameObjectsWithTag("FireNeverActive");
-        foreach (var fire in firesAvalible)
+        foreach (var fire in firesAvailable)
         {
-            if (fire.CompareTag("Light_Up_Fire"))//i'm calling my tag to see if it's light up or not so i can randomly light up another fire
+            if (fire.CompareTag("Not_used_fire"))//i'm calling my tag to see if it's light up or not so i can randomly light up another fire
             {
-                // Debug.Log("Found: " + i++);
                 notUsedFire.Add(fire);
+
             }
         }
-        // Debug.Log("Fires: " + fires.Count);
     }
 
     // Update is called once per frame
     void Update()
     {
-        light_up_time += Time.deltaTime;//it will count each second (returns the amount of time that elapsed since the last frame completed.)
+        lightUpTime += Time.deltaTime;//it works to give me an idea where i'm with time. For example, it gives me the amount of time that already passed
 
-        // Only lit up a random fire if there is any to be lit up
         if (notUsedFire.Count > 0)
         {
-            index = Random.Range(0, notUsedFire.Count); // pode usar leght -1 ;)
-            if (light_up_time > timing)
+            i = Random.Range(0, notUsedFire.Count); // my idea before was using not a list so it was notUsedFire.Legth -1, i changed because i can use .Count and .Add or .Remove
+            if (lightUpTime > timing)
             {
                 // Light up random fire
-                gamemanager = GameManager.instance;
-                notUsedFire = gamemanager.light_up_time(notUsedFire, index);
+                gameManager = GameManager.instance;
+                notUsedFire = GameManager.LightUpFiresRandomly(notUsedFire, i);
 
-                // Reset timer so we can activate another random fire in 20 seconds
-                light_up_time = 0;
+                lightUpTime = 0;
             }
         }
-    }
     }
 }

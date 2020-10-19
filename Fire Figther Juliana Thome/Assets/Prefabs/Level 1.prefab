@@ -99,7 +99,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5710050775214762456}
-  - component: {fileID: 5710050775214762458}
+  - component: {fileID: -3977086014606072780}
   m_Layer: 0
   m_Name: Level 1
   m_TagString: Untagged
@@ -138,7 +138,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5710050775214762458
+--- !u!114 &-3977086014606072780
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,13 +147,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5710050775214762455}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13e3e45088e68834999c82ca6f025949, type: 3}
+  m_Script: {fileID: 11500000, guid: a5c9cbbdce6c74f4db6335017d06cd0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  multiplier: 1
-  reduceFactor: 0.8
-  checkbox: {fileID: 7747238103799333882}
-  light: {fileID: 6167776866336230176}
+  lightUpTime: 0
+  firesAvailable: []
+  timing: 20
 --- !u!1001 &313056083421685506
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -840,16 +839,6 @@ PrefabInstance:
 --- !u!4 &434339622111591489 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6827492697051596017, guid: 7115fffa6692d7c468abcd656500fcd6, type: 3}
-  m_PrefabInstance: {fileID: 6397141147680192688}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &7747238103799333882 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3694233694045190986, guid: 7115fffa6692d7c468abcd656500fcd6, type: 3}
-  m_PrefabInstance: {fileID: 6397141147680192688}
-  m_PrefabAsset: {fileID: 0}
---- !u!108 &6167776866336230176 stripped
-Light:
-  m_CorrespondingSourceObject: {fileID: 963609358947906448, guid: 7115fffa6692d7c468abcd656500fcd6, type: 3}
   m_PrefabInstance: {fileID: 6397141147680192688}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6537311778591340961
