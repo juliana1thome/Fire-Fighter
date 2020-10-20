@@ -24,18 +24,31 @@ public class GameManager : MonoBehaviour
 
     //for user story 2
     [SerializeField] private int preventionScore;
-    [FormerlySerializedAs("Fires")] [SerializeField] private Text fires;
-    [FormerlySerializedAs("txt_timer")] [SerializeField] private Text txtTimer;// i need txt in the beginning otherwise it does not work
-    [FormerlySerializedAs("Points")] [SerializeField] private Text points;
-    [FormerlySerializedAs("Damage")] [SerializeField] private Text damage;
+    [SerializeField] private Text fires;
+    [SerializeField] private Text txtTimer;// i need txt in the beginning otherwise it does not work
+    [SerializeField] private Text damage;
     private float timePassed = 0;
-    private int totalOfFires = 0; 
+    private int firesNeverActive = 14; 
     private float startingTime = 0; // Start time
-    private int playerPoint = 0;
-    private bool m_Victory;
-    [SerializeField] private GameObject victoryScreen;
+    private float playerPoints = 0;
+    [SerializeField] private GameObject endLevelScreen;//i'm going to use for user story 3
 
-
+    //user story 3
+    [SerializeField] private int pointsPerLevel = 200;//if i add levels i can increment it depending of the level
+    [SerializeField] private int scoreForTime = 50;
+    private bool victory;
+    
+    //Variables for point system
+    private float totalPoints;
+    public int averageTime;
+    private float bonusPoints;
+    private float timePoints;
+    private float endingLevelPoints;
+    [SerializeField] private Text txtVictory;
+    [SerializeField] private Text txtTotalPoints;
+    [SerializeField] private Text txtPointsLevelPassed;
+    [SerializeField] private Text txtbonusPoints;
+    [SerializeField] private Text txttimePoints;
 
     //Singleton
     public static GameManager instance = null; // referencing my singleton
@@ -66,35 +79,58 @@ public class GameManager : MonoBehaviour
 
         currentBoard = Instantiate(level[curLevel]);
         Time.timeScale = 1;//volta o tempo para voltar ao normal
-        victoryScreen.SetActive(false);
+        endLevelScreen.SetActive(false);
     }
 
     public void MoreFire()
     {
         fire++; //it will add more fires
-        totalOfFires++;
+        firesNeverActive--;
     }
 
     private void AddPoints()
     {
-        playerPoint += ((14 - totalOfFires) * preventionScore);//teachers recommendation for this user story
-        Debug.Log("Points: " + playerPoint);//i need this so i can see my points as a player
-        points.text = "Points: " + playerPoint.ToString();
-        victoryScreen.SetActive(true);
-        //GetComponent<Image>().gameObject.SetActive(true); first attempt
-    }
+        if (victory == true)
+        {
+            endingLevelPoints= pointsPerLevel;
+            playerPoints += endingLevelPoints;
+            Debug.Log("Ending Level Points: " + endingLevelPoints);
+        }
+        else
+        {
+            endingLevelPoints= 0;
+            playerPoints += endingLevelPoints;
+        }
+        
+        //adding all the points
+        playerPoints += pointsPerLevel;
+        Debug.Log("Points: " + pointsPerLevel);//i need this so i can see my points as a player
 
+        // time points
+        timePoints = ((averageTime / timePassed) * scoreForTime);
+        playerPoints += timePoints;
+        Debug.Log("Time Points: " + timePoints + "Time Passed: " + timePassed + "average time: " + averageTime+ "score for time: "+ scoreForTime);
+       
+        //bonus points
+        bonusPoints = ((14 - firesNeverActive) * preventionScore);//teachers recommendation for the user story 2
+        playerPoints += bonusPoints;
+        Debug.Log("Bonus Points: " + bonusPoints);
+
+        //just to see if it's ok
+        Debug.Log("Total of Points: " + playerPoints.ToString("000"));
+
+    }
+    
     public static List<GameObject> LightUpFiresRandomly(List<GameObject> notUsedFire, int index)
     {
         //i'm lightning up a fire so i can remove it from my list
         notUsedFire[index].SetActive(true);
         // i'm removing it from my list
         notUsedFire.Remove(notUsedFire[index]);
-
+        
         return notUsedFire;
     }
-
-
+    
     //checking box
     private void Initiate()
     {
@@ -107,22 +143,41 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void FinishingLevel(bool victory)
+    public void FinishingLevel()
     {
-        m_Victory = victory;
+        
         AddPoints();
-        Time.timeScale = 0;//pausing
+        endLevelScreen.SetActive(true);
+        if (victory == true)
+        {
+            txtVictory.text = "Victory!";
+            txtPointsLevelPassed.text = "Level passed: + " + endingLevelPoints;
+            //i do this in here because i want this to happen only i win
+            txttimePoints.text = "Points for time: + " + timePoints;
+            txtbonusPoints.text = "Bonus Points: + " + bonusPoints;
+            txtTotalPoints.text = "Total: " + playerPoints;
+        }
+        
+        else
+        {
+            txtVictory.text = "Defeat!";
+            txtPointsLevelPassed.text = "Level passed: + 0";
+        }
+        
+        //pausing
+        Time.timeScale = 0;
+
     }
 
     //kill fire, it needs to be public like morefire and lessfire
     public void KillFire()
     {
-        Debug.Log("Fires actives" + fire);
         fire--;
-        
-        if (fire <= 0)//if i don't have any fire
+        Debug.Log("Active Fires: " + fire);
+        if (fire <= 0 && timePassed>= 2)//if i don't have any fire// it cannot be in the update otherwise this is going to happen forever
         {
-            FinishingLevel(true);
+            victory = true;
+            FinishingLevel();// i need to resolve the expense use of memory
         }
     }
 
@@ -132,12 +187,12 @@ public class GameManager : MonoBehaviour
         Debug.Log("Dead...");
     }
 
-    public void BuildingDamage()
+    /*public void BuildingDamage()
     {
 
         //damage += (damageSpeed * activeFire) * Time.deltaTime
 
-    }
+    }*/
 
     // Start is called before the first frame update
     void Start()
@@ -152,10 +207,13 @@ public class GameManager : MonoBehaviour
         fires.text = fire.ToString();// i had to remove 1 because i could not find the mistake that gives one extra fire
 
         timePassed = Time.time - startingTime;
+       // Debug.Log("Time Passed: "+timePassed);
 
-        string minutes = ((int)timePassed / 60).ToString();
+        string minutes;
+        minutes= ((int)timePassed / 60).ToString();
 
-        string seconds = (timePassed % 60).ToString("00");
+        string seconds; 
+        seconds = (timePassed % 60).ToString("00");
 
         txtTimer.text = minutes + ":" + seconds;
 

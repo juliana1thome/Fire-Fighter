@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,18 +8,15 @@ using Random = UnityEngine.Random;
 
 public class Levels : MonoBehaviour
 {
-    /// <summary>
-    /// Idea for this script: i need to use the tags to identify my fires
-    /// </summary> 
-
+    
     //calling gameManager
     private GameManager gameManager;
 
     private List<GameObject> notUsedFire = new List<GameObject>();//idea: i'm creating a "box" that i can pick a random fire to light up
-    public float lightUpTime = 0; //timer to light up a random fire
+    public float lightUpTimeRandomFire = 0; //timer to light up a random fire
     private int i;//it works like an index so i can see where i'm at my search for not light up fires
     [SerializeField] private GameObject[] firesAvailable;
-    [SerializeField] private int timing = 20; //time asked
+    [SerializeField] private int averageTimeToFinishLevel = 20; //time asked
 
 
     // Start is called before the first frame update
@@ -35,24 +31,30 @@ public class Levels : MonoBehaviour
 
             }
         }
+        gameManager = GameManager.instance;
+        gameManager.averageTime = averageTimeToFinishLevel;//it's in here beaucause every level has a different average time,
+        //the water user story will be in here too because i need to check in each level
     }
 
     // Update is called once per frame
     void Update()
     {
-        lightUpTime += Time.deltaTime;//it works to give me an idea where i'm with time. For example, it gives me the amount of time that already passed
+        lightUpTimeRandomFire += Time.deltaTime;//it works to give me an idea where i'm with time. For example, it gives me the amount of time that already passed
 
         if (notUsedFire.Count > 0)
         {
             i = Random.Range(0, notUsedFire.Count); // my idea before was using not a list so it was notUsedFire.Legth -1, i changed because i can use .Count and .Add or .Remove
-            if (lightUpTime > timing)
+            if (lightUpTimeRandomFire > averageTimeToFinishLevel)
             {
                 // Light up random fire
                 gameManager = GameManager.instance;
                 notUsedFire = GameManager.LightUpFiresRandomly(notUsedFire, i);
 
-                lightUpTime = 0;
+                lightUpTimeRandomFire = 0;
             }
         }
+        
+        //adding to my points count
+        
     }
 }

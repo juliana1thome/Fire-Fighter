@@ -150,9 +150,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5c9cbbdce6c74f4db6335017d06cd0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightUpTime: 0
+  lightUpTimeRandomFire: 20
   firesAvailable: []
-  timing: 20
+  averageTimeToFinishLevel: 20
 --- !u!1001 &313056083421685506
 PrefabInstance:
   m_ObjectHideFlags: 0
