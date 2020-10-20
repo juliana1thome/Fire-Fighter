@@ -28,22 +28,22 @@ Description: As a player I want a timer to count how much time pass before we fi
 - [X] 
 
 • We need to define an average time for each level (manually set, based on previous attempt)
-- [] 
+- [X] 
 
 • We need to define a base score to grade the player (between 150 to 500 pts)
-- [] 
+- [X] 
 
 • When we finish a level, we display a summary and a score based on how long it took to
-- [] 
+- [X] 
 
 complete the level. ((avgTime / timeElapsed) * timeScore)
-- [] 
+- [X] 
 
 • We need to display the results with details in the victory end screen
-- [] 
+- [X] 
 
 • We need to display the elapse time in the UI
-- [] 
+- [X] 
 
 # Story 4
 Description: As a player, I want structure damage, so we can lose. (Require story 1) & (Require story 2 and/or 3)
