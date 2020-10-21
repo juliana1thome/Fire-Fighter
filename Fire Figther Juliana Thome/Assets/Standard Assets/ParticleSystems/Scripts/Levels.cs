@@ -23,11 +23,11 @@ public class Levels : MonoBehaviour
     void Start()
     {
         //GameObject[] availableFires = GameObject.FindGameObjectsWithTag("FireNeverActive");
-        foreach (var fire in firesAvailable)
+        foreach (var activeFire in firesAvailable)
         {
-            if (fire.CompareTag("Not_used_fire"))//i'm calling my tag to see if it's light up or not so i can randomly light up another fire
+            if (activeFire.CompareTag("Not_used_fire"))//i'm calling my tag to see if it's light up or not so i can randomly light up another fire
             {
-                notUsedFire.Add(fire);
+                notUsedFire.Add(activeFire);
 
             }
         }

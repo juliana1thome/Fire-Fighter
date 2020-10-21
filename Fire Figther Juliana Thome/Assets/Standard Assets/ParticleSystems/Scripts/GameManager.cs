@@ -14,8 +14,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject[] level = null; //list of all levels
     private GameObject currentBoard; //this is the current level, you have it saved and them you delet it
     
-    //fire
-    private int fire = 0;// My quantity of fires will be 0 in the beginning
+    //activeFire
+    private int activeFire = 0;// My quantity of fires will be 0 in the beginning
 
 
     /*private List<GameObject> notUsedFire = new List<GameObject>();//idea: i'm creating a box that i can pick a random fire to light up
@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int preventionScore;
     [SerializeField] private Text fires;
     [SerializeField] private Text txtTimer;// i need txt in the beginning otherwise it does not work
-    [SerializeField] private Text damage;
     private float timePassed = 0;
     private int firesNeverActive = 14; 
     private float startingTime = 0; // Start time
@@ -37,6 +36,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int pointsPerLevel = 200;//if i add levels i can increment it depending of the level
     [SerializeField] private int scoreForTime = 50;
     private bool victory;
+    
+    //user story 4 --> Damage
+    private float damage = 0;
+    private string penaltyPoints;
+    [SerializeField] private float damageSpeed = 0.5f;
+    
     
     //Variables for point system
     private float totalPoints;
@@ -49,7 +54,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text txtPointsLevelPassed;
     [SerializeField] private Text txtbonusPoints;
     [SerializeField] private Text txttimePoints;
-
+    [SerializeField] private Text txtDamage;
+    [SerializeField] private Text txtPenaltyPoints;
+    
     //Singleton
     public static GameManager instance = null; // referencing my singleton
     private void Awake()
@@ -75,7 +82,7 @@ public class GameManager : MonoBehaviour
             Destroy(currentBoard);
         }
 
-        fire = 0; // to be sure if the counter panel is empty
+        activeFire = 0; // to be sure if the counter panel is empty
 
         currentBoard = Instantiate(level[curLevel]);
         Time.timeScale = 1;//volta o tempo para voltar ao normal
@@ -84,7 +91,7 @@ public class GameManager : MonoBehaviour
 
     public void MoreFire()
     {
-        fire++; //it will add more fires
+        activeFire++; //it will add more fires
         firesNeverActive--;
     }
 
@@ -116,17 +123,23 @@ public class GameManager : MonoBehaviour
         playerPoints += bonusPoints;
         Debug.Log("Bonus Points: " + bonusPoints);
 
+        //penalty points
+        // Add penalty points
+        playerPoints -= 10 * damage;
+        penaltyPoints = (10 * damage).ToString("000");
+        Debug.Log("Penalty Points: " + penaltyPoints);
+        
         //just to see if it's ok
         Debug.Log("Total of Points: " + playerPoints.ToString("000"));
 
     }
     
-    public static List<GameObject> LightUpFiresRandomly(List<GameObject> notUsedFire, int index)
+    public static List<GameObject> LightUpFiresRandomly(List<GameObject> notUsedFire, int i)
     {
         //i'm lightning up a fire so i can remove it from my list
-        notUsedFire[index].SetActive(true);
+        notUsedFire[i].SetActive(true);
         // i'm removing it from my list
-        notUsedFire.Remove(notUsedFire[index]);
+        notUsedFire.Remove(notUsedFire[i]);
         
         return notUsedFire;
     }
@@ -135,12 +148,15 @@ public class GameManager : MonoBehaviour
     private void Initiate()
     {
         GameObject[] checkbox = GameObject.FindGameObjectsWithTag("Checkbox"); //it will find my checkbox in unity
-
+        damage = 0; //if i don't do this i will play another game with trash points
+        Debug.Log("Damage: " + damage);
         //it sets all the check boxes as disabled  
         foreach (var check in checkbox)
         {
             check.SetActive(false);
         }
+        
+        txtDamage.text = damage.ToString("000");
     }
 
     public void FinishingLevel()
@@ -153,9 +169,10 @@ public class GameManager : MonoBehaviour
             txtVictory.text = "Victory!";
             txtPointsLevelPassed.text = "Level passed: + " + endingLevelPoints;
             //i do this in here because i want this to happen only i win
-            txttimePoints.text = "Points for time: + " + timePoints;
-            txtbonusPoints.text = "Bonus Points: + " + bonusPoints;
+            txttimePoints.text = "Points for time: " + timePoints;
+            txtbonusPoints.text = "Bonus Points: " + bonusPoints;
             txtTotalPoints.text = "Total: " + playerPoints;
+            txtPenaltyPoints.text = "Penalty: - " + penaltyPoints;
         }
         
         else
@@ -172,9 +189,9 @@ public class GameManager : MonoBehaviour
     //kill fire, it needs to be public like morefire and lessfire
     public void KillFire()
     {
-        fire--;
-        Debug.Log("Active Fires: " + fire);
-        if (fire <= 0 && timePassed>= 2)//if i don't have any fire// it cannot be in the update otherwise this is going to happen forever
+        activeFire--;
+        Debug.Log("Active Fires: " + activeFire);
+        if (activeFire <= 0 && timePassed>= 2)//if i don't have any fire// it cannot be in the update otherwise this is going to happen forever
         {
             victory = true;
             FinishingLevel();// i need to resolve the expense use of memory
@@ -187,7 +204,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Dead...");
     }
 
-    /*public void BuildingDamage()
+    /*public void Damage()
     {
 
         //damage += (damageSpeed * activeFire) * Time.deltaTime
@@ -204,19 +221,22 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        fires.text = fire.ToString();// i had to remove 1 because i could not find the mistake that gives one extra fire
+        fires.text = activeFire.ToString();// i had to remove 1 because i could not find the mistake that gives one extra fire
 
         timePassed = Time.time - startingTime;
        // Debug.Log("Time Passed: "+timePassed);
 
-        string minutes;
+        string minutes; 
         minutes= ((int)timePassed / 60).ToString();
 
         string seconds; 
         seconds = (timePassed % 60).ToString("00");
 
         txtTimer.text = minutes + ":" + seconds;
-
+        
+        //damage update since i will make damage to the building all the time because i need to count the time
+        damage += (damageSpeed * activeFire) * Time.deltaTime;
+        txtDamage.text = damage.ToString("000");
         
     }
 }
