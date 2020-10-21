@@ -50,11 +50,11 @@ Description: As a player, I want structure damage, so we can lose. (Require stor
 
 • We need to measure the damage amount based on how many fires are lit, and for how long
 (between 0.5 to 5% / second). damage += (damageSpeed * activeFire) * Time.deltaTime
-- [] 
+- [X] 
 
 • When we complete a level, we need to give a score penalty (-10 pts/ 1%). Final score cannot be
 less than 0! (damage * penaltyScore)
-- [] 
+- [X] 
 
 • If we reach 100% damage, the game ends with a Game Over screen
 - [] 
@@ -63,7 +63,7 @@ less than 0! (damage * penaltyScore)
 - [] 
 
 • We need to display the damage in the UI
-- [] 
+- [X] 
 
 # Story 5
 Description: As a player, I want water limit, so we can lose. (Require story 1 and 4)
