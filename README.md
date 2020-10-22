@@ -57,10 +57,10 @@ less than 0! (damage * penaltyScore)
 - [X] 
 
 • If we reach 100% damage, the game ends with a Game Over screen
-- [] 
+- [X] 
 
 • When Game Over, we can restart the game from level 1 or exit game
-- [] 
+- [X] 
 
 • We need to display the damage in the UI
 - [X] 

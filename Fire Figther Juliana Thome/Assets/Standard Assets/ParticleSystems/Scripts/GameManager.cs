@@ -2,25 +2,29 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Button = UnityEngine.UI.Button;
+using Cursor = UnityEngine.Cursor;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
+    
+    /// <summary>
+    /// user story 4 --> Game Over Exit Button --> Credit: Marc-André Larouche
+    /// </summary>
 
     //levels manager
     private int curLevel = 0; // this is for my current level, so i can "find myself"
-    [SerializeField] private GameObject[] level = null; //list of all levels
+    [SerializeField] private GameObject[] level; //list of all levels
     private GameObject currentBoard; //this is the current level, you have it saved and them you delet it
     
     //activeFire
     private int activeFire = 0;// My quantity of fires will be 0 in the beginning
-
-
-    /*private List<GameObject> notUsedFire = new List<GameObject>();//idea: i'm creating a box that i can pick a random fire to light up
-     [SerializeField] private GameObject[] firesAvailable;
-     [SerializeField] private int timing = 20; // time asked */
 
     //for user story 2
     [SerializeField] private int preventionScore;
@@ -42,6 +46,11 @@ public class GameManager : MonoBehaviour
     private string penaltyPoints;
     [SerializeField] private float damageSpeed = 0.5f;
     
+    //user story 4 --> Game Over screen
+    [SerializeField] private Button exitButton; 
+   //public GameObject restartButton;
+   [SerializeField] private Button restartButton;
+    public string sceneToReload = "FireFighter";
     
     //Variables for point system
     private float totalPoints;
@@ -49,6 +58,8 @@ public class GameManager : MonoBehaviour
     private float bonusPoints;
     private float timePoints;
     private float endingLevelPoints;
+    
+    //Txt
     [SerializeField] private Text txtVictory;
     [SerializeField] private Text txtTotalPoints;
     [SerializeField] private Text txtPointsLevelPassed;
@@ -56,9 +67,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text txttimePoints;
     [SerializeField] private Text txtDamage;
     [SerializeField] private Text txtPenaltyPoints;
+    [SerializeField] private Text txtExitButton;
+    [SerializeField] private Text txtRestartButton;
     
     //Singleton
     public static GameManager instance = null; // referencing my singleton
+
     private void Awake()
     {
         // Singleton implementation
@@ -73,6 +87,7 @@ public class GameManager : MonoBehaviour
     }
 
     //level loading
+
     private void LoadLevel()
     {
         Invoke(nameof(Initiate), 0);//initialize level to make sure everything, see more about this
@@ -85,9 +100,25 @@ public class GameManager : MonoBehaviour
         activeFire = 0; // to be sure if the counter panel is empty
 
         currentBoard = Instantiate(level[curLevel]);
-        Time.timeScale = 1;//volta o tempo para voltar ao normal
+        Time.timeScale = 0;
         endLevelScreen.SetActive(false);
     }
+
+    //exit function
+
+    public void Exit()
+             
+    {
+        Application.Quit();
+    }
+
+    //RESTART
+    public void Restart()
+    {
+        LoadLevel();
+        //SceneManager.LoadScene(sceneToReload);
+    }
+
 
     public void MoreFire()
     {
@@ -129,6 +160,12 @@ public class GameManager : MonoBehaviour
         penaltyPoints = (10 * damage).ToString("000");
         Debug.Log("Penalty Points: " + penaltyPoints);
         
+        //teacher's requirement, this is for my playerPoints never be less than 0
+        if (playerPoints < 0)
+        {
+            playerPoints = 0;
+        }
+        
         //just to see if it's ok
         Debug.Log("Total of Points: " + playerPoints.ToString("000"));
 
@@ -159,28 +196,50 @@ public class GameManager : MonoBehaviour
         txtDamage.text = damage.ToString("000");
     }
 
-    public void FinishingLevel()
+    public void FinishingLevel()//my gameover is in here too
     {
         
         AddPoints();
         endLevelScreen.SetActive(true);
+        
         if (victory == true)
         {
-            txtVictory.text = "Victory!";
+            txtVictory.text = "Congratulations, You Just Won The Level!!!";
             txtPointsLevelPassed.text = "Level passed: + " + endingLevelPoints;
             //i do this in here because i want this to happen only i win
             txttimePoints.text = "Points for time: " + timePoints;
             txtbonusPoints.text = "Bonus Points: " + bonusPoints;
             txtTotalPoints.text = "Total: " + playerPoints;
             txtPenaltyPoints.text = "Penalty: - " + penaltyPoints;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            exitButton.onClick.AddListener(delegate {Exit();});
+            restartButton.onClick.AddListener(delegate { Restart(); });
+            //to next level button
+            /*if (curLevel < level.Length -1)
+            {
+                curLevel++;
+            }*/
+            //restartButton.onClick.AddListener(delegate { LoadLevel(); });//change this to next level
         }
         
         else
         {
-            txtVictory.text = "Defeat!";
-            txtPointsLevelPassed.text = "Level passed: + 0";
+            /*i want to allow the button to show up and i want this to happen every time you have the endlevelscreen,
+             so if you won you can restart the level to get more points, or you can go to the next level
+            */
+            //problem: i cannot see my cursor, i cannot select the buttons
+            txtVictory.text = "Defeated! Try again!";
+            txtPointsLevelPassed.text = "Level passed:  0";
+            txtExitButton.text = "Exit";
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            exitButton.onClick.AddListener(delegate {Exit();});
+            //restartButton.onClick.AddListener(delegate { LoadLevel(); });
         }
         
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = false;
         //pausing
         Time.timeScale = 0;
 
@@ -191,10 +250,10 @@ public class GameManager : MonoBehaviour
     {
         activeFire--;
         Debug.Log("Active Fires: " + activeFire);
-        if (activeFire <= 0 && timePassed>= 2)//if i don't have any fire// it cannot be in the update otherwise this is going to happen forever
+        if (activeFire <= 0 && timePassed>= 2 && damage >= 100)//if i don't have any fire// it cannot be in the update otherwise this is going to happen forever
         {
             victory = true;
-            FinishingLevel();// i need to resolve the expense use of memory
+            FinishingLevel();
         }
     }
 
@@ -214,13 +273,17 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-        LoadLevel();
+        LoadLevel();//i need to change this to load main menu than if i press the button play i can call loadlevel
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (damage >= 100)
+        {
+            FinishingLevel();
+        }
+        
         fires.text = activeFire.ToString();// i had to remove 1 because i could not find the mistake that gives one extra fire
 
         timePassed = Time.time - startingTime;

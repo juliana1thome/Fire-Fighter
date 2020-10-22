@@ -9,6 +9,7 @@ TagManager:
   - Checkbox
   - Fire
   - Final_Scores
+  - Level1
   layers:
   - Default
   - TransparentFX

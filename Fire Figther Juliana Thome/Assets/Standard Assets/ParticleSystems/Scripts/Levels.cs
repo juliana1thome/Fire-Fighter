@@ -18,7 +18,6 @@ public class Levels : MonoBehaviour
     [SerializeField] private GameObject[] firesAvailable;
     [SerializeField] private int averageTimeToFinishLevel = 20; //time asked
 
-
     // Start is called before the first frame update
     void Start()
     {
