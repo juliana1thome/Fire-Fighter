@@ -90,10 +90,10 @@ Description: As a player, I want water limit, so we can lose. (Require story 1 a
 Description: As a master figure I want the fire to intensify back if I did not completely extinguish it, so the game will be more challenging.
 
 • Slowly increase the intensity back when the value is below the original intensity (3) if we are not trying to extinguish it
-- [] 
+- [X] 
 
 • Invoke the increase only after a delay (1 second) when we previously tried to extinguish the fire
-- [] 
+- [X] 
 
 # Story 7
 Description: As a master figure I want to see the highest score for each level, so I can train to beat the best score.

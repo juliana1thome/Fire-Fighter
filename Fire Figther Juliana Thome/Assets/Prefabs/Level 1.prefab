@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5c9cbbdce6c74f4db6335017d06cd0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightUpTimeRandomFire: 20
+  lightUpTimeRandomFire: 25
   firesAvailable:
   - {fileID: 436402653016799221}
   - {fileID: 4920105819384130418}
@@ -166,7 +166,7 @@ MonoBehaviour:
   - {fileID: 2002598471968146072}
   - {fileID: 2130482558815568608}
   - {fileID: 2775245939112845008}
-  averageTimeToFinishLevel: 20
+  averageTimeToFinishLevel: 25
   waterPerLevel: 1000
   timeToActivateRandomFire: 1
 --- !u!1001 &313056083421685506
@@ -251,6 +251,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5710050775214762456}
     m_Modifications:
+    - target: {fileID: 933715264, guid: 7115fffa6692d7c468abcd656500fcd6, type: 3}
+      propertyPath: reduceFactor
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6827492697051596017, guid: 7115fffa6692d7c468abcd656500fcd6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.229223
@@ -818,7 +822,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6830091587051687749, guid: 7115fffa6692d7c468abcd656500fcd6, type: 3}
       propertyPath: m_TagString
-      value: Light_Up_Fire
+      value: Not_used_fire
+      objectReference: {fileID: 0}
+    - target: {fileID: 6830091587051687749, guid: 7115fffa6692d7c468abcd656500fcd6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7115fffa6692d7c468abcd656500fcd6, type: 3}
@@ -839,6 +847,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5710050775214762456}
     m_Modifications:
+    - target: {fileID: 933715264, guid: 7115fffa6692d7c468abcd656500fcd6, type: 3}
+      propertyPath: reduceFactor
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6827492697051596017, guid: 7115fffa6692d7c468abcd656500fcd6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.1192226

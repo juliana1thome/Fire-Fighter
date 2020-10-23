@@ -15,9 +15,12 @@
             </e>
           </e>
         </e>
-        <e p="Level1.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="CursorLock.cs" t="Include" />
+          <e p="ExtinguishableParticleSystem.cs" t="Include" />
+          <e p="GameManager.cs" t="Include" />
+          <e p="Hose.cs" t="Include" />
+          <e p="Levels.cs" t="Include" />
           <e p="WaterHose.cs" t="Include" />
         </e>
         <e p="Shared" t="Include">
@@ -63,11 +66,7 @@
               <e p="AfterburnerPhysicsForce.cs" t="Include" />
               <e p="ExplosionFireAndDebris.cs" t="Include" />
               <e p="ExplosionPhysicsForce.cs" t="Include" />
-              <e p="ExtinguishableParticleSystem.cs" t="Include" />
               <e p="FireLight.cs" t="Include" />
-              <e p="GameManager.cs" t="Include" />
-              <e p="Hose.cs" t="Include" />
-              <e p="Levels.cs" t="Include" />
               <e p="ParticleSystemMultiplier.cs" t="Include" />
               <e p="SmokeParticles.cs" t="Include" />
               <e p="WaterHoseParticles.cs" t="Include" />

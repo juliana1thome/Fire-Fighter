@@ -5206,10 +5206,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13e3e45088e68834999c82ca6f025949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  multiplier: 1
-  reduceFactor: 0.85
+  multiplier: 2
+  reduceFactor: 0.8
   checkbox: {fileID: 3694233694045190986}
   light: {fileID: 963609358947906448}
+  increaseFactor: 1.2
 --- !u!82 &6986031671866693995
 AudioSource:
   m_ObjectHideFlags: 0

@@ -485,7 +485,7 @@ RectTransform:
   m_Children:
   - {fileID: 317172947}
   m_Father: {fileID: 1803240455}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -773,10 +773,10 @@ MonoBehaviour:
   fires: {fileID: 1208842559038381736}
   txtTimer: {fileID: 1208842560262522350}
   playerPoints: 0
-  endLevelScreen: {fileID: 1803240454}
+  endLevelScreen: {fileID: 123330526}
   pointsPerLevel: 200
   scoreForTime: 50
-  damageSpeed: 0.5
+  damageSpeed: 2
   exitButton: {fileID: 305357543}
   waterStart: 0
   waterAmount: 0
@@ -1700,7 +1700,7 @@ RectTransform:
   m_Children:
   - {fileID: 968945947}
   m_Father: {fileID: 1803240455}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -2224,7 +2224,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1803240455}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3643,9 +3643,9 @@ RectTransform:
   - {fileID: 202654892}
   - {fileID: 383454597}
   - {fileID: 1031237964}
+  - {fileID: 1012359634}
   - {fileID: 305357542}
   - {fileID: 754417222}
-  - {fileID: 1012359634}
   m_Father: {fileID: 123330531}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
