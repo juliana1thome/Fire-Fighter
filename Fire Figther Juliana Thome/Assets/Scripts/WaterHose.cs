@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 
 public class WaterHose : MonoBehaviour
 {
+    //calling gameManager
+    private GameManager gameManager;
+    
     private AudioSource audioS;
     private bool click;
     [SerializeField] private float speed = 5f;
@@ -13,6 +16,7 @@ public class WaterHose : MonoBehaviour
     {
         audioS = GetComponent<AudioSource>();
         audioS.volume = 0;
+        gameManager= GameManager.instance;
     }
 
     public void OnFire(InputAction.CallbackContext context)
@@ -26,6 +30,8 @@ public class WaterHose : MonoBehaviour
         if (click && audioS.volume < 1f)
         {
             audioS.volume = Mathf.Lerp (audioS.volume, 1, Time.deltaTime * speed);
+            gameManager.DecreaseWater((gameManager.waterStart/100f)* Time.deltaTime);
+            
         }else if (!click && audioS.volume > 0f)
         {
             audioS.volume = Mathf.Lerp (audioS.volume, 0, Time.deltaTime * speed);

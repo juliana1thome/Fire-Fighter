@@ -15,7 +15,7 @@ namespace UnityStandardAssets.Effects
         private float m_Power;
 
         private bool mouseDown = false;
-
+        
         public void OnFire(InputAction.CallbackContext context)
         {
             mouseDown = context.performed;

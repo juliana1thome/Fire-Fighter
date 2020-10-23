@@ -17,7 +17,10 @@ public class Levels : MonoBehaviour
     private int i;//it works like an index so i can see where i'm at my search for not light up fires
     [SerializeField] private GameObject[] firesAvailable;
     [SerializeField] private int averageTimeToFinishLevel = 20; //time asked
-
+    [SerializeField] private float waterPerLevel;
+    [SerializeField] private int timeToActivateRandomFire;// each level i can show it in the level and i can call it later in each level
+   
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +35,8 @@ public class Levels : MonoBehaviour
         }
         gameManager = GameManager.instance;
         gameManager.averageTime = averageTimeToFinishLevel;//it's in here beaucause every level has a different average time,
-        //the water user story will be in here too because i need to check in each level
+        gameManager.waterStart = waterPerLevel;
+        gameManager.waterAmount = waterPerLevel;
     }
 
     // Update is called once per frame
@@ -43,17 +47,12 @@ public class Levels : MonoBehaviour
         if (notUsedFire.Count > 0)
         {
             i = Random.Range(0, notUsedFire.Count); // my idea before was using not a list so it was notUsedFire.Legth -1, i changed because i can use .Count and .Add or .Remove
-            if (lightUpTimeRandomFire > averageTimeToFinishLevel)
+            if (lightUpTimeRandomFire > timeToActivateRandomFire)
             {
                 // Light up random fire
-                gameManager = GameManager.instance;
-                notUsedFire = GameManager.LightUpFiresRandomly(notUsedFire, i);
-
+                notUsedFire = gameManager.LightUpFiresRandomly(notUsedFire, i);
                 lightUpTimeRandomFire = 0;
             }
         }
-        
-        //adding to my points count
-        
     }
 }

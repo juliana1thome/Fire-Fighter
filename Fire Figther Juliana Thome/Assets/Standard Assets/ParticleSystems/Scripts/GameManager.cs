@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     private float timePassed = 0;
     private int firesNeverActive = 14; 
     private float startingTime = 0; // Start time
-    private float playerPoints = 0;
+    public float playerPoints = 0;
     [SerializeField] private GameObject endLevelScreen;//i'm going to use for user story 3
 
     //user story 3
@@ -43,18 +43,26 @@ public class GameManager : MonoBehaviour
     
     //user story 4 --> Damage
     private float damage = 0;
-    private string penaltyPoints;
+    private float penaltyPoints;
     [SerializeField] private float damageSpeed = 0.5f;
     
     //user story 4 --> Game Over screen
     [SerializeField] private Button exitButton; 
+    
+    //user story 5
+     private int waterScore = 1000;
+     [HideInInspector] public float waterStart;
+     public float waterAmount;
+     private float waterPoints;
+     private float waterPercentage;
+    
    //public GameObject restartButton;
    [SerializeField] private Button restartButton;
     public string sceneToReload = "FireFighter";
     
     //Variables for point system
     private float totalPoints;
-    public int averageTime;
+    public int averageTime;//this is for my average time in each level
     private float bonusPoints;
     private float timePoints;
     private float endingLevelPoints;
@@ -69,6 +77,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text txtPenaltyPoints;
     [SerializeField] private Text txtExitButton;
     [SerializeField] private Text txtRestartButton;
+    [SerializeField] public Text txtWater;
+    [SerializeField] private Text txtPointsWater;
     
     //Singleton
     public static GameManager instance = null; // referencing my singleton
@@ -100,8 +110,14 @@ public class GameManager : MonoBehaviour
         activeFire = 0; // to be sure if the counter panel is empty
 
         currentBoard = Instantiate(level[curLevel]);
-        Time.timeScale = 0;
+        Time.timeScale = 1;
         endLevelScreen.SetActive(false);
+    }
+    
+    //Water function
+   public void DecreaseWater(float amount)
+    {
+        waterAmount -= amount;
     }
 
     //exit function
@@ -156,10 +172,14 @@ public class GameManager : MonoBehaviour
 
         //penalty points
         // Add penalty points
-        playerPoints -= 10 * damage;
-        penaltyPoints = (10 * damage).ToString("000");
+        penaltyPoints = (10 * damage);
+        playerPoints -= penaltyPoints;
         Debug.Log("Penalty Points: " + penaltyPoints);
         
+        //water Points
+        waterPoints = ((int)waterPercentage * waterScore);
+        playerPoints += waterPoints;//(1000 pts/1%) . (waterLeft * scoreWater)
+
         //teacher's requirement, this is for my playerPoints never be less than 0
         if (playerPoints < 0)
         {
@@ -171,13 +191,13 @@ public class GameManager : MonoBehaviour
 
     }
     
-    public static List<GameObject> LightUpFiresRandomly(List<GameObject> notUsedFire, int i)
+    public List<GameObject> LightUpFiresRandomly(List<GameObject> notUsedFire, int i)
     {
         //i'm lightning up a fire so i can remove it from my list
         notUsedFire[i].SetActive(true);
         // i'm removing it from my list
         notUsedFire.Remove(notUsedFire[i]);
-        
+        Debug.Log("acedendo fogo");
         return notUsedFire;
     }
     
@@ -193,7 +213,7 @@ public class GameManager : MonoBehaviour
             check.SetActive(false);
         }
         
-        txtDamage.text = damage.ToString("000");
+        waterPercentage = 100f;
     }
 
     public void FinishingLevel()//my gameover is in here too
@@ -211,6 +231,7 @@ public class GameManager : MonoBehaviour
             txtbonusPoints.text = "Bonus Points: " + bonusPoints;
             txtTotalPoints.text = "Total: " + playerPoints;
             txtPenaltyPoints.text = "Penalty: - " + penaltyPoints;
+            txtPointsWater.text = "Water Points: " + waterPoints;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             exitButton.onClick.AddListener(delegate {Exit();});
@@ -240,6 +261,7 @@ public class GameManager : MonoBehaviour
         
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = false;
+        
         //pausing
         Time.timeScale = 0;
 
@@ -250,7 +272,7 @@ public class GameManager : MonoBehaviour
     {
         activeFire--;
         Debug.Log("Active Fires: " + activeFire);
-        if (activeFire <= 0 && timePassed>= 2 && damage >= 100)//if i don't have any fire// it cannot be in the update otherwise this is going to happen forever
+        if (activeFire <= 0 && damage < 100)//if i don't have any fire// it cannot be in the update otherwise this is going to happen forever
         {
             victory = true;
             FinishingLevel();
@@ -262,14 +284,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Dead...");
     }
-
-    /*public void Damage()
-    {
-
-        //damage += (damageSpeed * activeFire) * Time.deltaTime
-
-    }*/
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -281,6 +296,13 @@ public class GameManager : MonoBehaviour
     {
         if (damage >= 100)
         {
+            victory = false;
+            FinishingLevel();
+        }
+        
+        if (waterPercentage <= 0)
+        {
+            victory = false;
             FinishingLevel();
         }
         
@@ -299,7 +321,10 @@ public class GameManager : MonoBehaviour
         
         //damage update since i will make damage to the building all the time because i need to count the time
         damage += (damageSpeed * activeFire) * Time.deltaTime;
-        txtDamage.text = damage.ToString("000");
+        txtDamage.text = damage.ToString("00") + "%";
         
+        //water
+        txtWater.text = waterPercentage.ToString("00") + "%";
+        waterPercentage = (waterAmount * 100) / waterStart;
     }
 }
