@@ -69,22 +69,22 @@ less than 0! (damage * penaltyScore)
 Description: As a player, I want water limit, so we can lose. (Require story 1 and 4)
 
 • We need to specify an amount of water consumed per level (between 0.05 and 1%/second active). The level only goes down when we use it
-- [] 
+- [X] 
 
 • If we ran out of water, the game ends with Game Over
-- [] 
+- [X] 
 
 • We need to specify different amount per level, to make the game more intense
-- [] 
+- [X] 
 
 • Every level must be beatable! – Test your late levels to make sure it is playable
-- [] 
+- [X] 
 
 • When we complete a level, we need to display a score based on the amount of water remaining (1000 pts/1%). (waterLeft * scoreWater)
-- [] 
+- [X] 
 
 • We need to display the amount of water remaining in the UI
-- [] 
+- [X] 
 
 # Story 6
 Description: As a master figure I want the fire to intensify back if I did not completely extinguish it, so the game will be more challenging.
