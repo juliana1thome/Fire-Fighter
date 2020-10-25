@@ -15,7 +15,8 @@ public class GameManager : MonoBehaviour
 {
 
     /// <summary>
-    /// user story 4 --> Game Over Exit Button --> Credit: Marc-André Larouche
+    /// user story 4 --> Game Over Exit() --> Credit: Marc-André Larouche
+    /// user story 7 --> PlayerPrefs Code --> Credit: Marc-André Larouche
     /// </summary>
 
     //levels manager
@@ -56,6 +57,9 @@ public class GameManager : MonoBehaviour
     public float waterAmount;
     private float waterPoints;
     private float waterPercentage;
+    
+    //user story 7
+    private int bestScore = 0; //best score from the registry
 
     //public GameObject restartButton;
     [SerializeField] private Button restartButton;
@@ -80,6 +84,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text txtRestartButton;
     [SerializeField] public Text txtWater;
     [SerializeField] private Text txtPointsWater;
+    [SerializeField] private Text txtBestScore;
 
     //Singleton
     public static GameManager instance = null; // referencing my singleton
@@ -99,7 +104,7 @@ public class GameManager : MonoBehaviour
 
     //level loading
 
-    private void LoadLevel()
+    public void LoadLevel()
     {
         Invoke(nameof(Initiate), 0); //initialize level to make sure everything, see more about this
 
@@ -128,7 +133,6 @@ public class GameManager : MonoBehaviour
     }
 
     //exit function
-
     public void Exit()
     {
         Application.Quit();
@@ -140,6 +144,11 @@ public class GameManager : MonoBehaviour
         LoadLevel();
     }
 
+    //button for go to main menu
+    public void LoadMainMenuScene()
+    {
+        SceneManager.LoadSceneAsync("Main Menu");
+    }
 
     public void MoreFire()
     {
@@ -147,7 +156,7 @@ public class GameManager : MonoBehaviour
         firesNeverActive--;
     }
 
-    private void AddPoints() //it calls this function over and over again
+    private void AddPoints() //Saving the player points
     {
         if (victory == true)
         {
@@ -191,6 +200,14 @@ public class GameManager : MonoBehaviour
         {
             playerPoints = 0;
         }
+        
+        //PlayerPrefs
+        if (playerPoints > bestScore)
+        {
+            PlayerPrefs.SetFloat("Score",playerPoints);
+            PlayerPrefs.Save();
+        }
+
 
         //just to see if it's ok
         Debug.Log("Total of Points: " + playerPoints.ToString("000"));
@@ -223,7 +240,47 @@ public class GameManager : MonoBehaviour
         waterPercentage = 100f;
     }
 
-    public void FinishingLevel(bool victory) //my gameover is in here too
+    public void Victorytxt()
+    {
+        txtVictory.text = "Congratulations, You Just Won The Level!!!";
+        txtPointsLevelPassed.text = "Level Points: + " + endingLevelPoints;
+        txttimePoints.text = "Time Points: " + timePoints;
+        txtbonusPoints.text = "Bonus Points: " + bonusPoints;
+        txtTotalPoints.text = "Final Score: " + playerPoints;
+        txtPenaltyPoints.text = "Penalty Points: - " + penaltyPoints;
+        txtPointsWater.text = "Water Points: " + waterPoints;
+        txtExitButton.text = "Quit";
+        if (playerPoints > bestScore)
+        {
+            txtBestScore.text = "[HiGH SCORE] ";
+        }
+        else
+        {
+            txtBestScore.text = "";
+        }
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+    
+    public void Defeattxt()//it will show my defeat menu and i will use this to load in the script for scene exit menu
+    {
+        txtVictory.text = "Defeated! Try again!";
+        txtPointsLevelPassed.text = "Level Points: + " + endingLevelPoints;
+        txttimePoints.text = "Time Points: " + timePoints;
+        txtbonusPoints.text = "Bonus Points: " + bonusPoints;
+        txtTotalPoints.text = "Final Score: " + playerPoints;
+        txtPenaltyPoints.text = "Penalty Points: - " + penaltyPoints;
+        txtPointsWater.text = "Water Points: " + waterPoints;
+        txtExitButton.text = "Quit";
+        if (playerPoints < bestScore)
+        {
+            txtBestScore.text = "";
+        }
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+    
+    public void FinishingLevel(bool victory) //my gameover is in here too,function Death
     {
         
         AddPoints();
@@ -232,29 +289,11 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         if (victory)
         {
-            txtVictory.text = "Congratulations, You Just Won The Level!!!";
-            txtPointsLevelPassed.text = "Level passed: + " + endingLevelPoints;
-            txttimePoints.text = "Points for time: " + timePoints;
-            txtbonusPoints.text = "Bonus Points: " + bonusPoints;
-            txtTotalPoints.text = "Total: " + playerPoints;
-            txtPenaltyPoints.text = "Penalty: - " + penaltyPoints;
-            txtPointsWater.text = "Water Points: " + waterPoints;
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            Victorytxt();
         }
         else
         {
-            txtVictory.text = "Defeated! Try again!";
-            txtPointsLevelPassed.text = "Level passed: + " + endingLevelPoints;
-            txttimePoints.text = "Points for time: " + timePoints;
-            txtbonusPoints.text = "Bonus Points: " + bonusPoints;
-            txtTotalPoints.text = "Total: " + playerPoints;
-            txtPenaltyPoints.text = "Penalty: - " + penaltyPoints;
-            txtPointsWater.text = "Water Points: " + waterPoints;
-            Cursor.lockState = CursorLockMode.None;
-            txtExitButton.text = "Exit";
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            Defeattxt();
         }
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = false;
@@ -271,15 +310,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //death
-    public void Death()
-    {
-        Debug.Log("Dead...");
-    }
-
     // Start is called before the first frame update
     void Start()
     {
+        bestScore = PlayerPrefs.GetInt ("Score", 0);//read the save data from the registry
         LoadLevel(); //i need to change this to load main menu than if i press the button play i can call loadlevel
     }
 

@@ -99,40 +99,40 @@ Description: As a master figure I want the fire to intensify back if I did not c
 Description: As a master figure I want to see the highest score for each level, so I can train to beat the best score.
 
 • Add a high score in PlayerPrefs for each level
-- [] 
+- [x] 
 
 • Display the best score in the victory screen
-- [] 
+- [x] 
 
 # Story 8
 Description: As a game designer, I want a main menu and loading screen in between scenes, so the game look more professional.
 
 • Add a main menu with 2 buttons: Start Game, Exit game
-- [] 
+- [X] 
 
 • When we are Game Over, we need to replace the button Exit game by Go to Main menu
-- [] 
+- [X] 
 
 • Add loading screen between scenes in the Build Settings
-- [] 
+- [X] 
 
 • The UI must always look good on different resolutions screen and aspect ratio
-- [] 
+- [X] 
 
 # Story 9
 Description: As a player, I want multiples levels with different difficulty settings, so the game progress over time.
 
 • Create between 5 to 10 levels with increasingly more difficulty in the game manager
-- [] 
+- [X] 
 
 • Create an ending screen to say congratulations to winning player and then add a button to return to the main menu (or quit the game if you don’t have any)
-- [] 
+- [X] 
 
 # Story 10
 Description: As a game designer, I want my game to have an icon, the college’s logo during the splash images, so the game look professional.
 
 • Add an icon for the build
-- [] 
+- [X] 
 
 • Add the LaSalle logo in the splash image section
-- [] 
+- [X] 

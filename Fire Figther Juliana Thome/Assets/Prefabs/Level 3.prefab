@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 5710050775214762456}
   - component: {fileID: -3977086014606072780}
   m_Layer: 0
-  m_Name: Level 1
+  m_Name: Level 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -166,9 +166,9 @@ MonoBehaviour:
   - {fileID: 2002598471968146072}
   - {fileID: 2130482558815568608}
   - {fileID: 2775245939112845008}
-  averageTimeToFinishLevel: 15
+  averageTimeToFinishLevel: 25
   waterPerLevel: 1000
-  timeToActivateRandomFire: 50
+  timeToActivateRandomFire: 40
 --- !u!1001 &313056083421685506
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -747,11 +747,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6830091587051687749, guid: 7115fffa6692d7c468abcd656500fcd6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6830091587051687749, guid: 7115fffa6692d7c468abcd656500fcd6, type: 3}
       propertyPath: m_TagString
-      value: Not_used_fire
+      value: Light_Up_Fire
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7115fffa6692d7c468abcd656500fcd6, type: 3}
@@ -822,11 +822,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6830091587051687749, guid: 7115fffa6692d7c468abcd656500fcd6, type: 3}
       propertyPath: m_TagString
-      value: Not_used_fire
+      value: Light_Up_Fire
       objectReference: {fileID: 0}
     - target: {fileID: 6830091587051687749, guid: 7115fffa6692d7c468abcd656500fcd6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7115fffa6692d7c468abcd656500fcd6, type: 3}
