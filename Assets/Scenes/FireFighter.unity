@@ -1016,6 +1016,9 @@ MonoBehaviour:
   txtPointsWater: {fileID: 1012359635}
   txtBestScore: {fileID: 1999511539}
   txtNextLevelButton: {fileID: 416470289}
+  nextLevelButton: {fileID: 631730954}
+  mainMenuButton: {fileID: 80900064}
+  quitButton: {fileID: 305357541}
 --- !u!4 &373426461
 Transform:
   m_ObjectHideFlags: 0

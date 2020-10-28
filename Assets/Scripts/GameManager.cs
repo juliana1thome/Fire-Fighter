@@ -87,6 +87,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text txtBestScore;
     [SerializeField] private Text txtNextLevelButton;
     
+    // Buttons
+    [SerializeField] private GameObject nextLevelButton;
+    [SerializeField] private GameObject mainMenuButton;
+    [SerializeField] private GameObject quitButton;
+    
     // Referencing my singleton
     public static GameManager instance = null; 
     
@@ -261,8 +266,9 @@ public class GameManager : MonoBehaviour
         txtPointsWater.text = "Water Points: " + waterPoints;
         txtExitButton.text = "Quit";
         txtNextLevelButton.text = "Next Level";
-        GameObject.FindGameObjectWithTag("NextLevel").SetActive(true);
-        GameObject.FindGameObjectWithTag("MainMenu").SetActive(false);
+        nextLevelButton.SetActive(true);
+        mainMenuButton.SetActive(false);
+        quitButton.SetActive(true);
         if (playerPoints > bestScore)
         {
             txtBestScore.text = "[HiGH SCORE] ";
@@ -283,9 +289,9 @@ public class GameManager : MonoBehaviour
         txtTotalPoints.text = "Final Score: " + playerPoints;
         txtPenaltyPoints.text = "Penalty Points: - " + penaltyPoints;
         txtPointsWater.text = "Water Points: " + waterPoints;
-        txtExitButton.text = "Main Menu";
-        GameObject.FindGameObjectWithTag("NextLevel").SetActive(false);
-        GameObject.FindGameObjectWithTag("MainMenu").SetActive(true);
+        nextLevelButton.SetActive(false);
+        quitButton.SetActive(false);
+        mainMenuButton.SetActive(true);
         if (playerPoints < bestScore)
         {
             txtBestScore.text = "";
@@ -295,7 +301,7 @@ public class GameManager : MonoBehaviour
     // Ends the level
     private void FinishingLevel(bool victory)
     {
-        
+        victoryManager = victory;
         AddPoints();
         endLevelScreen.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
@@ -311,7 +317,6 @@ public class GameManager : MonoBehaviour
         {
             Defeattxt();
         }
-        victoryManager = victory;
     }
 
     // Decrease Fire Counter
