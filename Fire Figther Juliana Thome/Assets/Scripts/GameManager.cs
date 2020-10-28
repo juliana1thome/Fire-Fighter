@@ -15,60 +15,64 @@ public class GameManager : MonoBehaviour
 {
 
     /// <summary>
-    /// user story 4 --> Game Over Exit Button --> Credit: Marc-André Larouche
+    /// user story 4 --> Game Over Exit() --> Credit: Marc-André Larouche
+    /// user story 7 --> PlayerPrefs Code --> Credit: Marc-André Larouche
     /// </summary>
 
-    //levels manager
-    private int curLevel = 0; // this is for my current level, so i can "find myself"
+    // Levels manager
+    private int curLevel = 0; // This is for my current level, so i can "find myself"
 
-    [SerializeField] private GameObject[] level; //list of all levels
-    private GameObject currentBoard; //this is the current level, you have it saved and them you delet it
+    [SerializeField] private GameObject[] level; // List of all levels
+    private GameObject currentBoard; // This is the current level, you have it saved and them you delet it
 
-    //activeFire
+    // ActiveFire
     private int activeFire = 0; // My quantity of fires will be 0 in the beginning
 
-    //for user story 2
+    // For user story 2
     [SerializeField] private int preventionScore;
     [SerializeField] private Text fires;
-    [SerializeField] private Text txtTimer; // i need txt in the beginning otherwise it does not work
+    [SerializeField] private Text txtTimer; // I need txt in the beginning otherwise it does not work
     private float timePassed = 0;
     private int firesNeverActive = 14;
     private float startingTime = 0; // Start time
     public float playerPoints = 0;
-    [SerializeField] private GameObject endLevelScreen; //i'm going to use for user story 3
+    [SerializeField] private GameObject endLevelScreen; // I'm going to use for user story 3
 
-    //user story 3
-    [SerializeField] private int pointsPerLevel = 200; //if i add levels i can increment it depending of the level
+    // User story 3
+    [SerializeField] private int pointsPerLevel = 200; // If i add levels i can increment it depending of the level
     [SerializeField] private int scoreForTime = 50;
-    private bool victory;
+    private bool victoryManager;
 
-    //user story 4 --> Damage
+    // User story 4 --> Damage
     private float damage = 0;
     private float penaltyPoints;
     [SerializeField] private float damageSpeed = 0.5f;
 
-    //user story 4 --> Game Over screen
+    //User story 4 --> Game Over screen
     [SerializeField] private Button exitButton;
 
-    //user story 5
+    // User story 5
     private int waterScore = 1000;
     [HideInInspector] public float waterStart;
     public float waterAmount;
     private float waterPoints;
     private float waterPercentage;
+    
+    // User story 7
+    private int bestScore = 0; //best score from the registry
 
-    //public GameObject restartButton;
+    // Public GameObject restartButton;
     [SerializeField] private Button restartButton;
     public string sceneToReload = "FireFighter";
 
-    //Variables for point system
+    // Variables for point system
     private float totalPoints;
-    public int averageTime; //this is for my average time in each level
+    public int averageTime; // This is for my average time in each level
     private float bonusPoints;
     private float timePoints;
     private float endingLevelPoints;
 
-    //Txt
+    // Txt
     [SerializeField] private Text txtVictory;
     [SerializeField] private Text txtTotalPoints;
     [SerializeField] private Text txtPointsLevelPassed;
@@ -80,10 +84,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text txtRestartButton;
     [SerializeField] public Text txtWater;
     [SerializeField] private Text txtPointsWater;
-
-    //Singleton
-    public static GameManager instance = null; // referencing my singleton
-
+    [SerializeField] private Text txtBestScore;
+    [SerializeField] private Text txtNextLevelButton;
+    
+    // Referencing my singleton
+    public static GameManager instance = null; 
+    
+    // Singleton
     private void Awake()
     {
         // Singleton implementation
@@ -97,9 +104,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //level loading
-
-    private void LoadLevel()
+    // Level loading
+    public void LoadLevel()
     {
         Invoke(nameof(Initiate), 0); //initialize level to make sure everything, see more about this
 
@@ -114,9 +120,11 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         startingTime = Time.time;
         endLevelScreen.SetActive(false);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = false;
     }
 
-    //Water function
+    // Water function
     public void DecreaseWater(float amount)
     {
         waterAmount -= amount;
@@ -127,29 +135,39 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //exit function
-
-    public void Exit()
+    // Quit Button
+    public void QuitButton()
     {
         Application.Quit();
     }
 
-    //RESTART
-    public void Restart()
+    // Restart Button
+    public void RestartButton()
     {
+        if (victoryManager)
+        {
+            curLevel--;
+        }
+        
         LoadLevel();
     }
+    
+    // Button for go to main menu
+    public void LoadMainMenuScene()
+    {
+        SceneManager.LoadSceneAsync("Main Menu");
+    }
 
-
+    // Increase Fire Counter
     public void MoreFire()
     {
         activeFire++; //it will add more fires
         firesNeverActive--;
     }
 
-    private void AddPoints() //it calls this function over and over again
+    private void AddPoints() // Saving the player points
     {
-        if (victory == true)
+        if (victoryManager)
         {
             endingLevelPoints = pointsPerLevel;
             playerPoints += endingLevelPoints;
@@ -191,6 +209,14 @@ public class GameManager : MonoBehaviour
         {
             playerPoints = 0;
         }
+        
+        //PlayerPrefs
+        if (playerPoints > bestScore)
+        {
+            PlayerPrefs.SetFloat("Score",playerPoints);
+            PlayerPrefs.Save();
+        }
+
 
         //just to see if it's ok
         Debug.Log("Total of Points: " + playerPoints.ToString("000"));
@@ -208,7 +234,7 @@ public class GameManager : MonoBehaviour
         return notUsedFire;
     }
 
-    //checking box
+    // Checking box
     private void Initiate()
     {
         GameObject[] checkbox = GameObject.FindGameObjectsWithTag("Checkbox"); //it will find my checkbox in unity
@@ -223,44 +249,72 @@ public class GameManager : MonoBehaviour
         waterPercentage = 100f;
     }
 
-    public void FinishingLevel(bool victory) //my gameover is in here too
+    // Show Victory Screen
+    private void Victorytxt()
+    {
+        txtVictory.text = "Congratulations, You Just Won The Level!!!";
+        txtPointsLevelPassed.text = "Level Points: + " + endingLevelPoints;
+        txttimePoints.text = "Time Points: " + timePoints;
+        txtbonusPoints.text = "Bonus Points: " + bonusPoints;
+        txtTotalPoints.text = "Final Score: " + playerPoints;
+        txtPenaltyPoints.text = "Penalty Points: - " + penaltyPoints;
+        txtPointsWater.text = "Water Points: " + waterPoints;
+        txtExitButton.text = "Quit";
+        txtNextLevelButton.text = "Next Level";
+        GameObject.FindGameObjectWithTag("NextLevel").SetActive(true);
+        GameObject.FindGameObjectWithTag("MainMenu").SetActive(false);
+        if (playerPoints > bestScore)
+        {
+            txtBestScore.text = "[HiGH SCORE] ";
+        }
+        else
+        {
+            txtBestScore.text = "";
+        }
+    }
+    
+    // Show Defeat Screen
+    private void Defeattxt()//it will show my defeat menu and i will use this to load in the script for scene exit menu
+    {
+        txtVictory.text = "Defeated! Try again!";
+        txtPointsLevelPassed.text = "Level Points: + " + endingLevelPoints;
+        txttimePoints.text = "Time Points: " + timePoints;
+        txtbonusPoints.text = "Bonus Points: " + bonusPoints;
+        txtTotalPoints.text = "Final Score: " + playerPoints;
+        txtPenaltyPoints.text = "Penalty Points: - " + penaltyPoints;
+        txtPointsWater.text = "Water Points: " + waterPoints;
+        txtExitButton.text = "Main Menu";
+        GameObject.FindGameObjectWithTag("NextLevel").SetActive(false);
+        GameObject.FindGameObjectWithTag("MainMenu").SetActive(true);
+        if (playerPoints < bestScore)
+        {
+            txtBestScore.text = "";
+        }
+    }
+    
+    // Ends the level
+    private void FinishingLevel(bool victory)
     {
         
         AddPoints();
         endLevelScreen.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         //pausing
         Time.timeScale = 0;
         if (victory)
         {
-            txtVictory.text = "Congratulations, You Just Won The Level!!!";
-            txtPointsLevelPassed.text = "Level passed: + " + endingLevelPoints;
-            txttimePoints.text = "Points for time: " + timePoints;
-            txtbonusPoints.text = "Bonus Points: " + bonusPoints;
-            txtTotalPoints.text = "Total: " + playerPoints;
-            txtPenaltyPoints.text = "Penalty: - " + penaltyPoints;
-            txtPointsWater.text = "Water Points: " + waterPoints;
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            curLevel++;
+            Victorytxt();
         }
         else
         {
-            txtVictory.text = "Defeated! Try again!";
-            txtPointsLevelPassed.text = "Level passed: + " + endingLevelPoints;
-            txttimePoints.text = "Points for time: " + timePoints;
-            txtbonusPoints.text = "Bonus Points: " + bonusPoints;
-            txtTotalPoints.text = "Total: " + playerPoints;
-            txtPenaltyPoints.text = "Penalty: - " + penaltyPoints;
-            txtPointsWater.text = "Water Points: " + waterPoints;
-            Cursor.lockState = CursorLockMode.None;
-            txtExitButton.text = "Exit";
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            Defeattxt();
         }
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = false;
+        victoryManager = victory;
     }
 
-    //kill fire, it needs to be public like morefire and lessfire
+    // Decrease Fire Counter
     public void KillFire()
     {
         activeFire--;
@@ -270,20 +324,13 @@ public class GameManager : MonoBehaviour
             FinishingLevel(true);
         }
     }
-
-    //death
-    public void Death()
-    {
-        Debug.Log("Dead...");
-    }
-
-    // Start is called before the first frame update
+    
     void Start()
     {
+        bestScore = PlayerPrefs.GetInt ("Score", 0);//read the save data from the registry
         LoadLevel(); //i need to change this to load main menu than if i press the button play i can call loadlevel
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         fires.text = activeFire.ToString();

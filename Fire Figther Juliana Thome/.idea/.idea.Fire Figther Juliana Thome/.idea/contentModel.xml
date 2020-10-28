@@ -21,8 +21,11 @@
           <e p="GameManager.cs" t="Include" />
           <e p="Hose.cs" t="Include" />
           <e p="Levels.cs" t="Include" />
+          <e p="Load.cs" t="Include" />
+          <e p="MainMenu.cs" t="Include" />
           <e p="WaterHose.cs" t="Include" />
         </e>
+        <e p="SelectMenu.cs" t="Include" />
         <e p="Shared" t="Include">
           <e p="Ramps" t="Include">
             <e p="Editor" t="Include">

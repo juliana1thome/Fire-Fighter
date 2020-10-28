@@ -10,6 +10,8 @@ TagManager:
   - Fire
   - Final_Scores
   - Level1
+  - NextLevel
+  - MainMenu
   layers:
   - Default
   - TransparentFX
