@@ -136,3 +136,31 @@ Description: As a game designer, I want my game to have an icon, the college’s
 
 • Add the LaSalle logo in the splash image section
 - [X] 
+
+# Learning Source:
+
+https://answers.unity.com/questions/1124691/creating-a-proper-game-manager.html
+https://answers.unity.com/questions/351420/simple-timer-1.html
+https://stackoverflow.com/questions/36611093/hide-button-in-unity3d
+https://answers.unity.com/questions/1529340/play-sound-only-once-on-setactive-of-gameobject.html
+https://answers.unity.com/questions/942622/how-do-you-call-a-function-with-a-button-unity-5-u.html
+https://docs.unity3d.com/2017.1/Documentation/ScriptReference/Behaviour-isActiveAndEnabled.html
+https://docs.unity3d.com/2017.1/Documentation/ScriptReference/UI.Button.html
+https://docs.unity3d.com/2017.1/Documentation/ScriptReference/UI.Image.html
+https://docs.unity3d.com/2017.1/Documentation/ScriptReference/EventSystems.EventSystem.html
+https://docs.unity3d.com/2017.1/Documentation/ScriptReference/UI.Button-onClick.html
+https://docs.unity3d.com/2017.1/Documentation/ScriptReference/UI.Selectable.IsPressed.html
+https://docs.unity3d.com/2017.1/Documentation/ScriptReference/UI.Selectable.OnPointerEnter.html
+https://docs.unity3d.com/2017.1/Documentation/ScriptReference/EventSystems.UIBehaviour.Reset.html
+https://docs.unity3d.com/2017.1/Documentation/ScriptReference/MonoBehaviour.Reset.html
+https://forum.unity.com/threads/how-do-i-detect-when-a-button-is-being-pressed-held-on-eventtype.352368/
+https://docs.unity3d.com/ScriptReference/SceneManagement.SceneManager.LoadScene.html
+https://docs.unity3d.com/ScriptReference/Application.LoadLevel.html
+https://answers.unity.com/questions/1067622/how-do-i-make-an-exit-game-button-c.html
+https://docs.unity3d.com/ScriptReference/Debug.Log.html
+https://www.youtube.com/watch?v=qBcsczLJkUY
+https://stackoverflow.com/questions/26899808/how-to-create-a-time-counter-using-c-sharp-in-unity-3d
+https://answers.unity.com/questions/423884/enemy-kill-counter-and-time-limit.html
+https://www.reddit.com/r/Unity3D/comments/68061g/how_to_make_a_kill_counter/
+https://answers.unity.com/questions/1529356/is-it-possible-to-create-a-particle-destroyer.html
+https://forum.unity.com/threads/getting-score-to-display-on-game-over-scene-solved.434319/

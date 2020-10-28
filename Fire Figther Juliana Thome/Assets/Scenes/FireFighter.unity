@@ -226,7 +226,11 @@ GameObject:
   - component: {fileID: 80900066}
   m_Layer: 5
   m_Name: MainMenu
+<<<<<<< HEAD
   m_TagString: MainMenu
+=======
+  m_TagString: Untagged
+>>>>>>> upstream/main
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -248,7 +252,11 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
   m_AnchoredPosition: {x: -191.69, y: -64.63}
+=======
+  m_AnchoredPosition: {x: 0, y: -64.63}
+>>>>>>> upstream/main
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &80900066
@@ -996,7 +1004,11 @@ MonoBehaviour:
   endLevelScreen: {fileID: 123330526}
   pointsPerLevel: 200
   scoreForTime: 50
+<<<<<<< HEAD
   damageSpeed: 0.5
+=======
+  damageSpeed: 10
+>>>>>>> upstream/main
   exitButton: {fileID: 305357543}
   waterStart: 0
   waterAmount: 0
@@ -1015,7 +1027,10 @@ MonoBehaviour:
   txtWater: {fileID: 1208842560057351819}
   txtPointsWater: {fileID: 1012359635}
   txtBestScore: {fileID: 1999511539}
+<<<<<<< HEAD
   txtNextLevelButton: {fileID: 416470289}
+=======
+>>>>>>> upstream/main
 --- !u!4 &373426461
 Transform:
   m_ObjectHideFlags: 0
@@ -4081,7 +4096,10 @@ RectTransform:
   - {fileID: 305357542}
   - {fileID: 754417222}
   - {fileID: 80900065}
+<<<<<<< HEAD
   - {fileID: 631730955}
+=======
+>>>>>>> upstream/main
   m_Father: {fileID: 123330531}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

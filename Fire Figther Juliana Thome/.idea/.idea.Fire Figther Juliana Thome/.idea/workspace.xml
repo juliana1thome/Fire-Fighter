@@ -25,7 +25,10 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Fire Figther Juliana Thome/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Fire Figther Juliana Thome/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Level 1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Level 1.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/FireFighter.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/FireFighter.unity" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/ExtinguishableParticleSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ExtinguishableParticleSystem.cs" afterDir="false" />
+=======
+>>>>>>> upstream/main
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Textures/icon512.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/icon512.png.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/ArtifactDB" beforeDir="false" afterPath="$PROJECT_DIR$/Library/ArtifactDB" afterDir="false" />
@@ -46,7 +49,10 @@
       <change beforePath="$PROJECT_DIR$/Library/Artifacts/3c/3ceee096478f5307ad2965aaa5cec0e8" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/Artifacts/44/44653b964aa7e89090e5a175f5402037" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/Artifacts/4a/4a5a13bda44e2e7c76e8b9ff869e320b" beforeDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/Library/Artifacts/4c/4c58652582ee6abcbb5413a40ebd187c" beforeDir="false" />
+=======
+>>>>>>> upstream/main
       <change beforePath="$PROJECT_DIR$/Library/Artifacts/4f/4f6fb695e21666e4b43e41b8b7614480" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/Artifacts/4f/4fb87e5c4d491c0a460dd0c0a8687af7" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/Artifacts/4f/4fbc50c5666ccf01e0cfbe3d94a3c2d6" beforeDir="false" />
@@ -105,6 +111,10 @@
       <change beforePath="$PROJECT_DIR$/Library/CurrentLayout-default.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/Library/CurrentLayout-default.dwlt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/EditorUserBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Library/EditorUserBuildSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/InspectorExpandedItems.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Library/InspectorExpandedItems.asset" afterDir="false" />
+<<<<<<< HEAD
+=======
+      <change beforePath="$PROJECT_DIR$/Library/LastSceneManagerSetup.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Library/LastSceneManagerSetup.txt" afterDir="false" />
+>>>>>>> upstream/main
       <change beforePath="$PROJECT_DIR$/Library/SceneVisibilityState.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Library/SceneVisibilityState.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/ScriptAssemblies/Assembly-CSharp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Library/ScriptAssemblies/Assembly-CSharp.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/ScriptAssemblies/Unity.InputSystem.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Library/ScriptAssemblies/Unity.InputSystem.dll" afterDir="false" />
@@ -113,9 +123,15 @@
       <change beforePath="$PROJECT_DIR$/Library/StateCache/MainStageHierarchy/ee/ee2028ef0dbac9681d627336b06379a5.json" beforeDir="false" afterPath="$PROJECT_DIR$/Library/StateCache/MainStageHierarchy/ee/ee2028ef0dbac9681d627336b06379a5.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/StateCache/SceneView/df/dfcf8a06571f3659770661c82a33d104.json" beforeDir="false" afterPath="$PROJECT_DIR$/Library/StateCache/SceneView/df/dfcf8a06571f3659770661c82a33d104.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/expandedItems" beforeDir="false" afterPath="$PROJECT_DIR$/Library/expandedItems" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/Library/shadercompiler-UnityShaderCompiler.exe11.log" beforeDir="false" afterPath="$PROJECT_DIR$/Library/shadercompiler-UnityShaderCompiler.exe11.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+>>>>>>> upstream/main
       <change beforePath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp-Editor.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp-Editor.csprojAssemblyReference.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp-firstpass.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp-firstpass.csprojAssemblyReference.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
@@ -147,11 +163,18 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/LoadScene.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/EndMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/SelectMenu.cs" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/Assets/Scripts/Loding.cs" />
         <option value="$PROJECT_DIR$/Assets/Load.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ExtinguishableParticleSystem.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Load.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MainMenu.cs" />
+=======
+        <option value="$PROJECT_DIR$/Assets/Scripts/MainMenu.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Loding.cs" />
+        <option value="$PROJECT_DIR$/Assets/Load.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Load.cs" />
+>>>>>>> upstream/main
         <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
       </list>
     </option>
@@ -220,11 +243,14 @@
       <workItem from="1603510901915" duration="5157000" />
       <workItem from="1603575964547" duration="4832000" />
       <workItem from="1603581051064" duration="4595000" />
+<<<<<<< HEAD
       <workItem from="1603591637532" duration="965000" />
       <workItem from="1603592708217" duration="2029000" />
       <workItem from="1603595112359" duration="115000" />
       <workItem from="1603820812096" duration="655000" />
       <workItem from="1603859396017" duration="1540000" />
+=======
+>>>>>>> upstream/main
     </task>
     <servers />
   </component>

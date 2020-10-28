@@ -58,7 +58,11 @@ public class GameManager : MonoBehaviour
     private float waterPoints;
     private float waterPercentage;
     
+<<<<<<< HEAD
     // User story 7
+=======
+    //user story 7
+>>>>>>> upstream/main
     private int bestScore = 0; //best score from the registry
 
     // Public GameObject restartButton;
@@ -85,12 +89,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Text txtWater;
     [SerializeField] private Text txtPointsWater;
     [SerializeField] private Text txtBestScore;
+<<<<<<< HEAD
     [SerializeField] private Text txtNextLevelButton;
     
     // Referencing my singleton
     public static GameManager instance = null; 
     
     // Singleton
+=======
+
+    //Singleton
+    public static GameManager instance = null; // referencing my singleton
+
+>>>>>>> upstream/main
     private void Awake()
     {
         // Singleton implementation
@@ -104,7 +115,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+<<<<<<< HEAD
     // Level loading
+=======
+    //level loading
+
+>>>>>>> upstream/main
     public void LoadLevel()
     {
         Invoke(nameof(Initiate), 0); //initialize level to make sure everything, see more about this
@@ -135,8 +151,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+<<<<<<< HEAD
     // Quit Button
     public void QuitButton()
+=======
+    //exit function
+    public void Exit()
+>>>>>>> upstream/main
     {
         Application.Quit();
     }
@@ -158,14 +179,27 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadSceneAsync("Main Menu");
     }
 
+<<<<<<< HEAD
     // Increase Fire Counter
+=======
+    //button for go to main menu
+    public void LoadMainMenuScene()
+    {
+        SceneManager.LoadSceneAsync("Main Menu");
+    }
+
+>>>>>>> upstream/main
     public void MoreFire()
     {
         activeFire++; //it will add more fires
         firesNeverActive--;
     }
 
+<<<<<<< HEAD
     private void AddPoints() // Saving the player points
+=======
+    private void AddPoints() //Saving the player points
+>>>>>>> upstream/main
     {
         if (victoryManager)
         {
@@ -249,8 +283,12 @@ public class GameManager : MonoBehaviour
         waterPercentage = 100f;
     }
 
+<<<<<<< HEAD
     // Show Victory Screen
     private void Victorytxt()
+=======
+    public void Victorytxt()
+>>>>>>> upstream/main
     {
         txtVictory.text = "Congratulations, You Just Won The Level!!!";
         txtPointsLevelPassed.text = "Level Points: + " + endingLevelPoints;
@@ -260,9 +298,12 @@ public class GameManager : MonoBehaviour
         txtPenaltyPoints.text = "Penalty Points: - " + penaltyPoints;
         txtPointsWater.text = "Water Points: " + waterPoints;
         txtExitButton.text = "Quit";
+<<<<<<< HEAD
         txtNextLevelButton.text = "Next Level";
         GameObject.FindGameObjectWithTag("NextLevel").SetActive(true);
         GameObject.FindGameObjectWithTag("MainMenu").SetActive(false);
+=======
+>>>>>>> upstream/main
         if (playerPoints > bestScore)
         {
             txtBestScore.text = "[HiGH SCORE] ";
@@ -271,10 +312,18 @@ public class GameManager : MonoBehaviour
         {
             txtBestScore.text = "";
         }
+<<<<<<< HEAD
     }
     
     // Show Defeat Screen
     private void Defeattxt()//it will show my defeat menu and i will use this to load in the script for scene exit menu
+=======
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+    
+    public void Defeattxt()//it will show my defeat menu and i will use this to load in the script for scene exit menu
+>>>>>>> upstream/main
     {
         txtVictory.text = "Defeated! Try again!";
         txtPointsLevelPassed.text = "Level Points: + " + endingLevelPoints;
@@ -283,17 +332,29 @@ public class GameManager : MonoBehaviour
         txtTotalPoints.text = "Final Score: " + playerPoints;
         txtPenaltyPoints.text = "Penalty Points: - " + penaltyPoints;
         txtPointsWater.text = "Water Points: " + waterPoints;
+<<<<<<< HEAD
         txtExitButton.text = "Main Menu";
         GameObject.FindGameObjectWithTag("NextLevel").SetActive(false);
         GameObject.FindGameObjectWithTag("MainMenu").SetActive(true);
+=======
+        txtExitButton.text = "Quit";
+>>>>>>> upstream/main
         if (playerPoints < bestScore)
         {
             txtBestScore.text = "";
         }
+<<<<<<< HEAD
     }
     
     // Ends the level
     private void FinishingLevel(bool victory)
+=======
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+    
+    public void FinishingLevel(bool victory) //my gameover is in here too,function Death
+>>>>>>> upstream/main
     {
         
         AddPoints();
@@ -304,7 +365,10 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         if (victory)
         {
+<<<<<<< HEAD
             curLevel++;
+=======
+>>>>>>> upstream/main
             Victorytxt();
         }
         else
@@ -324,7 +388,12 @@ public class GameManager : MonoBehaviour
             FinishingLevel(true);
         }
     }
+<<<<<<< HEAD
     
+=======
+
+    // Start is called before the first frame update
+>>>>>>> upstream/main
     void Start()
     {
         bestScore = PlayerPrefs.GetInt ("Score", 0);//read the save data from the registry
